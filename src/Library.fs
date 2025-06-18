@@ -1,20 +1,38 @@
 ﻿namespace wit.comp3350
 
 module a5 =
-    /// TODO: Complete and document
+    /// <summary> returns the maximum of two integers </summary>
+    /// <params> two int option types </params>
+    /// <returns> the max of the two integers </returns>
     let twoMax (aop: 'a option) (bop: 'a option) =
-        None
+        match aop, bop with
+        | Some aop, Some bop -> if aop > bop then Some aop else Some bop
+        | Some aop, None -> Some aop
+        | None, Some bop -> Some bop
+        | None, None -> None
 
+    /// <summary> returns the minimum of two integers </summary>
+    /// <params> two int option types </params>
+    /// <returns> the minimum of the two integers </returns>
     let twoMin (aop: 'a option) (bop: 'a option) =
-        None
+        match aop, bop with
+        | Some aop, Some bop -> if aop < bop then Some aop else Some bop
+        | Some aop, None -> Some aop
+        | None, Some bop -> Some bop
+        | None, None -> None
 
-    /// TODO: Complete and document
+
+    /// <summary> returns the maximum of three integers </summary>
+    /// <params> three int option types </params>
+    /// <returns> the maximum of the three integers </returns>
     let threeMax (aop: 'a option) (bop: 'a option) (cop: 'a option) =
-        None
+        twoMax (twoMax aop bop) (twoMax bop cop)
 
-    /// TODO: Complete and document
+    /// <summary> returns the minimum of three integers </summary>
+    /// <params> three int option types </params>
+    /// <returns> the minimum of the three integers </returns>
     let threeMin (aop: 'a option) (bop: 'a option) (cop: 'a option) =
-        None
+        twoMin (twoMin aop bop) (twoMin bop cop)
 
     /// TODO: Complete and document
     let rec tryNth n l =
