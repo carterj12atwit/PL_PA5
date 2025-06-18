@@ -34,9 +34,11 @@ module a5 =
     let threeMin (aop: 'a option) (bop: 'a option) (cop: 'a option) =
         twoMin (twoMin aop bop) (twoMin bop cop)
 
-    /// TODO: Complete and document
+    /// <summary> returns an element from a specific index of a list if it exists </summary>
+    /// <params> a list and a desired index </params>
+    /// <returns> either None of the element at the specified index </returns>
     let rec tryNth n l =
-        None
+        if List.length l <= n then None else Some (List.item n l)
 
     /// <summary>This type represents a binary tree. A binary tree can either be
     ///  - An empty node
@@ -46,13 +48,20 @@ module a5 =
         | EmptyN
         | InnerN of BinaryTree<'a> * 'a * BinaryTree<'a>
 
-     /// TODO: Document this and complete it
+    /// <summary> adds all the values in a binary tree </summary>
+    /// <params> a binary tree </params>
+    /// <returns> the total sum of all nodes in the binary tree </returns>
     let rec addAll t =
-        0
+        match t with
+        | EmptyN -> 0
+        | InnerN (c1, x, c2) -> x + addAll c1 + addAll c2
     
-    /// TODO: Document this and complete it
+    /// <summary> tracks all values in the tree that are less than 10 </summary>
+    /// 
     let rec countSingle t =
-        0
+        match t with 
+        | EmptyN -> 0
+        | InnerN (c1, x, c2) -> if x < 10 then 1 + countSingle c1 + countSingle c2 else countSingle c1 + countSingle c2
 
     /// TODO: Complete and document
     let rec toListInOrder tr =
